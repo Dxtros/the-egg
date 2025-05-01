@@ -25,6 +25,18 @@ $(document).ready(function () {
             timer: 3000,
             linger: false
         },
+        {
+            id: 3,
+            narrator: 'lorem ipsum',
+            narratorClass: 'intro-narrator',
+            person: '',
+            personClass: '',
+            story: '',
+            storyClass: '',
+            hasButton: false,
+            timer: 3000,
+            linger: false
+        },
       
     ];
 
