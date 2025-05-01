@@ -5,6 +5,7 @@
 
 * {
     box-sizing: border-box;
+    
 }
 
 
@@ -21,6 +22,7 @@
     background-size: cover;
     background-position: 50% 50%;
     z-index: -1;
+    overflow: hidden;
     
 }
 
@@ -30,6 +32,7 @@ main {
     position: relative;
     z-index: 5;
     width:100%;
+   
 }
 
 .landing {
@@ -90,11 +93,29 @@ padding-top: 10rem;
 
     padding: 2rem 2rem 2rem 2rem;
 }
+.intro-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0 2rem;
+}
+.center-text {
+    color: #FEFFEF;
+    font-family: "Noto Serif", serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-.narrator {
+.intro-narrator {
     color: #FEFFEF;
     font-family: "Noto Serif";
-    font-size: 48px;
+    font-size: 36px;
     font-style: normal;
     font-weight: 700;
 }
