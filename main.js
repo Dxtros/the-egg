@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // Story sections array
    
-    const storyContent = [
+    const introContent = [
         {
             id: 1,
             narrator: 'You were on your way home when you died.',
@@ -49,11 +49,7 @@ $(document).ready(function () {
         
 //flash anim
 $('.flash').addClass('flash-anim');
-$('main').html(`
-    <div class="intro-div">
-        <h1 class="${segment.narrator}"></h1>
-    </div>
-`)
+$('main').empty();
 
 
 setTimeout(function() {             
@@ -70,26 +66,38 @@ setTimeout(function() {
         }
         
         // Check if we're at the end of the content array
-        if (index >= storyContent.length) {
+        if (index >= introContent.length) {
             setupDialogueSection();
             return;
         }
         
         // Get the current segment
         
-        const segment = storyContent[index];
+        const segment = introContent[index];
         // Display the narrator text 
-        $('.narrator.intro').text(segment.narrator);
         
+        $('main').html(`
+            <div class="intro-div">
+                <h1 class="${segment.narratorClass}">${segment.narrator}</h1>
+            </div>
+        `);
       
             
-if (segment.timer > 0) {
-            // If no button and has timer, automatically advance after delay
+
+            // automatically advance after delay
             storyTimer = setTimeout(function() {
                 currentIndex++;
                 displayIntroStoryContent(currentIndex);
             }, segment.timer);
         
-    }
-
+    
+            function setupDialogueSection() {
+                $('main').html(`
+                    <div class="dialogue-section">
+                        <h2>Dialogue section will go here</h2>
+                    </div>
+                `);
+                // Add your dialogue logic here
+            }
+      
 }})
