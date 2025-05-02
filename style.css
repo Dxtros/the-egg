@@ -93,6 +93,34 @@ padding-top: 10rem;
 
     padding: 2rem 2rem 2rem 2rem;
 }
+
+.flash {    
+    opacity:0;
+     background:white; 
+    position:absolute;
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    transition:all;
+}
+.flash-anim {
+    animation-name:flashanim;
+    animation-duration: 4s;
+    animation-direction: normal;
+ 
+
+}
+@keyframes flashanim {
+    0% {
+        opacity:1;
+    }
+
+    100% {
+        opacity:0;
+    }
+}
+
 .intro-div {
     display: flex;
     flex-direction: column;
@@ -129,10 +157,3 @@ padding-top: 10rem;
     font-weight: 400;
 }
 
-.flash-1 {
-    position: relative;
-
-    z-index: 2;
-    width: 100%;
-    background-color: rgb(133, 39, 39);
-}

@@ -1,5 +1,6 @@
 $(document).ready(function () {
     // Story sections array
+   
     const storyContent = [
         {
             id: 1,
@@ -10,7 +11,7 @@ $(document).ready(function () {
             story: '',
             storyClass: '',
             hasButton: false,
-            timer: 3000,
+            timer: 5000,
             linger: false
         },
         {
@@ -22,7 +23,7 @@ $(document).ready(function () {
             story: '',
             storyClass: '',
             hasButton: false,
-            timer: 3000,
+            timer: 5000,
             linger: false
         },
         {
@@ -39,26 +40,31 @@ $(document).ready(function () {
         },
       
     ];
-
+    
     let currentIndex = 0;
     let storyTimer;
 
     // Handle the begin button on the landing page
     $('.button-begin').on('click', function() {
-        // Replace content on the same page
-        $('main').html(`
-            <div class="intro-div">
-                <h1 class="center-text narrator intro"></h1>
-            </div>
-        `);
         
+//flash anim
+$('.flash').addClass('flash-anim');
+$('main').html(`
+    <div class="intro-div">
+        <h1 class="${segment.narrator}"></h1>
+    </div>
+`)
+
+
+setTimeout(function() {             
         // Start the story
         displayIntroStoryContent(currentIndex);
+    }, 3000);
     });
 
     // Function to display intro story content
     function displayIntroStoryContent(index) {
-        // Clear any existing timers
+        // Clear any existing timers and replace with timer value
         if (storyTimer) {
             clearTimeout(storyTimer);
         }
@@ -70,8 +76,8 @@ $(document).ready(function () {
         }
         
         // Get the current segment
-        const segment = storyContent[index];
         
+        const segment = storyContent[index];
         // Display the narrator text 
         $('.narrator.intro').text(segment.narrator);
         
