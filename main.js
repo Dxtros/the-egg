@@ -152,7 +152,56 @@ $(document).ready(function () {
 
     }
 
-   
+    function update_DialogueSection() {
+        const segment = contentS1[index]
+        //checks for story end
+        if (index >= contentS1.length) {
+            console.log("End of content reached, setting up END");
+            endStory();//does not exist yet
+            return;
+        }
+
+
+        // function to set linger
+        if (segment.lingerN) {
+            const narrator = document.querySelector("${segment.narratorClass}");
+            narrator.classList.add('fade-text')
+
+        }
+
+        if (segment.lingerP) {
+            const person = document.querySelector("${segment.personClass}");
+            person.classList.add('fade-text')
+        }
+        // display button or write timer logic here-- if button display it here and on click trigger button section
+        if (segment.button) {
+            //display button and trigger on click
+
+            //need to make .button-cont class
+            $('.main').append(`
+                    <div class=".button-cont"></div>
+                `);
+            $('.button-cont').on('click', function () {
+                console.log("cont clicked, currentIndex:", currentIndex);
+                buttonDialogue(segment);
+            }
+                //writeDialogueSection(segment);
+
+            )
+        }
+        else {
+            console.log('timer dialgue was triggered');
+            //timer logic goes here same as intro
+        }
+
+
+
+        function buttonDialogue(s) {
+
+            //display next text from button click (narrator usually)
+
+        }
+    }
 
 
 })
