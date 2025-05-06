@@ -9,7 +9,7 @@
 }
 
 
-
+body {background:#000;}
 
 
 /* ---- particles.js container ---- */
@@ -93,8 +93,7 @@ padding-top: 10rem;
 
     padding: 2rem 2rem 2rem 2rem;
 }
-
-.flashScreen {    
+.flash {    
     opacity:0;
      background:white; 
     position:absolute;
@@ -106,21 +105,19 @@ padding-top: 10rem;
 }
 .flash-anim {
     animation-name:flashanim;
-    animation-duration: 4s;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
     animation-direction: normal;
- 
 
 }
 @keyframes flashanim {
-    0% {
-        opacity:1;
-    }
-
-    100% {
+    5% {
         opacity:0;
     }
+    100% {
+        opacity:1;
+    }
 }
-
 .intro-div {
     display: flex;
     flex-direction: column;
@@ -156,4 +153,3 @@ padding-top: 10rem;
     font-style: normal;
     font-weight: 400;
 }
-
