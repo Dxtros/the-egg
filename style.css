@@ -32,6 +32,7 @@ main {
     position: relative;
     z-index: 5;
     width:100%;
+    overflow: hidden;
    
 }
 
@@ -148,6 +149,15 @@ padding-top: 10rem;
     font-weight: 700;
 }
 
+.small-narrator{
+    color: #FFF;
+
+    font-family: "Quicksand";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+}
+
 .person {
     color: #FFF;
 
@@ -155,5 +165,17 @@ padding-top: 10rem;
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
+}
+.fade-text{
+    color: var(--fade-word, rgba(255, 255, 255, 0.20));
+}
+
+.button-cont {
+    position: fixed;
+    padding: 5rem;
+    bottom: 0;
+    z-index: 10;
+    right: 0;
+
 }
 
