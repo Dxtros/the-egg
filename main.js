@@ -10,7 +10,7 @@ $(document).ready(function () {
         console.log('Key pressed:', event.key);
 
 
-        // You can also check for arrow keys, space, etc.
+        // check for arrow keys, space, etc.
         if (event.key === 'ArrowRight') {
             console.log('Right arrow was pressed');
             currentIndex++;
