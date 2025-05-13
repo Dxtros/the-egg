@@ -56,11 +56,11 @@ $(document).ready(function () {
         {
             id: 2,
             narrator: '“You died,” <span class="small-narrator">I said, matter-of-factly no point in mincing words.</span>',
-            narratorClass: 'narrator n-pos-top',
-            anim: 'animate__animated animate__fadeIn',
+            narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+            anim: 'animate__animated',
             outAnim: '',
             person: '“What… what happened?” <span class="small-narrator">You asked.</span> “Where am I?”',
-            personClass: 'person p-pos-mid',
+            personClass: 'person p-pos-mid fade-to-grey',
             story: '',
             storyClass: '',
             hasButton: false, // write function for this
@@ -199,6 +199,7 @@ $(document).ready(function () {
             // For example, start a fade-out after fade-in completes
             element.classList.remove('animate__fadeIn');
             element.classList.add('animate__fadeOut', 'animate__slow');
+            
 
             timerEnd = false;
         }
@@ -243,7 +244,7 @@ $(document).ready(function () {
         
      }
     function display_button(segment1) {
-        $('main').append(`<img class="button-cont" src="img/cont-button-v1.svg"></img>`);
+        $('main').prepend(`<img class="button-cont" src="img/cont-button-v1.svg"></img>`);
 
 
         $('.button-cont').on('click', function () {
@@ -335,11 +336,8 @@ if(segment1.lingerP){
 
 //                 });
 //             });
-
-
-
- contentS1Index++;
-       init_DialogueSection();
+        contentS1Index++;
+         init_DialogueSection();
         
     }
 
