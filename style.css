@@ -32,6 +32,8 @@ main {
     position: relative;
     z-index: 5;
     overflow: hidden;
+
+  transition: opacity 0.15s ease-in-out;  /* Adjust timing to your preference */
    
 }
 
@@ -226,7 +228,19 @@ font-weight: 700;
 
 }
 .fade-text{
-   color: var(--fade-word, rgba(255, 255, 255, 0.20)) !important;
+  
+color:rgba(255, 255, 255, 0.20);
+animation: fade-anim 10s forwards; 
+}
+
+@keyframes fade-anim {
+    0% {
+        opacity:1;
+    }
+
+    100% {
+        opacity: 0.5;;
+    }
 }
 
 .button-cont {

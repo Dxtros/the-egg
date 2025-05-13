@@ -43,7 +43,7 @@ $(document).ready(function () {
             narrator: '',
             narratorClass: 'narrator',
             anim: 'animate__animated animate__fadeIn',
-            outAnim: 'animate__animated animate__fadeOut',
+            outAnim: '',
             person: '“What… what happened?” <span class="small-narrator">You asked.</span> “Where am I?”',
             personClass: 'person p-pos-mid',
             story: '',
@@ -58,22 +58,22 @@ $(document).ready(function () {
             narrator: '“You died,” <span class="small-narrator">I said, matter-of-factly no point in mincing words.</span>',
             narratorClass: 'narrator n-pos-top',
             anim: 'animate__animated animate__fadeIn',
-            outAnim: 'animate__animated animate__fadeOut',
+            outAnim: '',
             person: '“What… what happened?” <span class="small-narrator">You asked.</span> “Where am I?”',
-            personClass: 'person fade-text p-pos-mid',
+            personClass: 'person p-pos-mid',
             story: '',
             storyClass: '',
             hasButton: false, // write function for this
-            timer: '1000',
+            timer: '8000',
             lingerN: false,
-            lingerP: false //write function for this
+            lingerP: true //write function for this
         },
-         {
+        {
             id: 3,
             narrator: '',
             narratorClass: 'narrator',
             anim: 'animate__animated animate__fadeIn',
-            outAnim: 'animate__animated animate__fadeOut',
+            outAnim: '',
             person: '“There was a… a truck and it was skidding…”',
             personClass: 'person p-pos-mid',
             story: '',
@@ -85,35 +85,19 @@ $(document).ready(function () {
 
         },
 
-         {
-            id: 4,
-            narrator: '',
-            narratorClass: 'narrator',
-            anim: '',
-            outAnim: 'animate__animated animate__fadeOut',
-            person: '“There was a… a truck and it was skidding…”',
-            personClass: 'person p-pos-mid',
-            story: '',
-            storyClass: '',
-            hasButton: false, // write function for this
-            timer: '8000',
-            lingerN: false,
-            lingerP: false //write function for this
 
-        },
-        
         {
-            id: 5,
+            id: 4,
             narrator: '“Yup,” <span class="small-narrator">I said.</span>',
             narratorClass: 'narrator n-pos-mid',
             anim: 'animate__animated animate__fadeIn',
-            outAnim: 'animate__animated animate__fadeOut',
+            outAnim: '',
             person: '“There was a… a truck and it was skidding…”',
             personClass: 'person fade-text p-pos-mid',
             story: '',
             storyClass: '',
             hasButton: false, // write function for this
-            timer: '1000',
+            timer: '3000',
             lingerN: false,
             lingerP: false //write function for this
         }
@@ -214,9 +198,9 @@ $(document).ready(function () {
 
             // For example, start a fade-out after fade-in completes
             element.classList.remove('animate__fadeIn');
-            element.classList.add('animate__fadeOut');
+            element.classList.add('animate__fadeOut', 'animate__slow');
 
-             timerEnd = false;
+            timerEnd = false;
         }
 
     }
@@ -226,7 +210,7 @@ $(document).ready(function () {
 
     function init_DialogueSection() {
 
-       
+
         console.log('Update dialogue section triggerd');
         console.log("next index is:", contentS1Index)
         const segment1 = contentS1[contentS1Index]
@@ -240,7 +224,7 @@ $(document).ready(function () {
         if (segment1.hasButton) {
             console.log("has button trig");
             display_Text(segment1);
-            display_button();
+            display_button(segment1);
 
         }
         if (segment1.hasButton == false) {
@@ -252,30 +236,38 @@ $(document).ready(function () {
 
 
     function display_Text(segment1) {
+
+
         $('main').html(`<div class="segment1-div"><p class="${segment1.personClass} ${segment1.anim}">${segment1.person}</p><p class="${segment1.narratorClass} ${segment1.anim}">${segment1.narrator}</p></div>`);
-    }
-    function display_button() {
+   
+        
+     }
+    function display_button(segment1) {
         $('main').append(`<img class="button-cont" src="img/cont-button-v1.svg"></img>`);
 
 
         $('.button-cont').on('click', function () {
+        
             console.log("cont clicked");
-
-            update_dialogue()
+if(segment1.lingerP){
+    $('.person').addClass('fade-text')
+}
+            update_dialogue(segment1)
+         
         });
     }
 
     function timed_dialogue(segment1) {
         // automatically advance after specified timer delay, fade out after anim 
         console.log("Setting timeout for next segment");
-        
+
         storyTimer = setTimeout(function () {
             const elements = document.querySelectorAll('p');
 
 
 
-            console.log('timer end')
-            
+
+
 
             let animationsCompleted = 0;
 
@@ -296,7 +288,7 @@ $(document).ready(function () {
                     // Only update dialogue once all animations are complete
                     if (animationsCompleted === elements.length) {
                         console.log("anims complete, updating dialgue")
-                        update_dialogue();
+                        update_dialogue()
                     }
 
                 });
@@ -310,35 +302,99 @@ $(document).ready(function () {
 
 
     function update_dialogue() {
-       
-//any logic for in between text updates
-   contentS1Index ++;
 
-        init_DialogueSection();
+        //any logic for in between text updates
+// const elements = document.querySelectorAll('p');
+
+
+
+
+
+
+//             let animationsCompleted = 0;
+
+//             // Loop through each paragraph element
+//             elements.forEach(element => {
+//                 // Apply fadeOut to each individual element
+//                 timerEnd = true;
+//                 fadeOut(element, timerEnd);
+
+
+//                 element.addEventListener('animationend', () => {
+//                     // Do something when the animation finishes
+//                     console.log('fade out ended', element.classList);
+
+//                     // Increment counter
+//                     animationsCompleted++;
+
+//                     // Only update dialogue once all animations are complete
+//                     if (animationsCompleted === elements.length) {
+//                         contentS1Index++;
+//         init_DialogueSection();
+//                     }
+
+//                 });
+//             });
+
+
+
+ contentS1Index++;
+       init_DialogueSection();
+        
     }
+
 
     document.addEventListener('keydown', function (event) {
         console.log('Key pressed:', event.key);
 
 
-        // check for arrow keys, space, etc.
+
         if (event.key === 'ArrowRight') {
             console.log('Right arrow was pressed');
             currentIndex++;
-           
+
         }
         if (event.key === 'ArrowLeft') {
             console.log('Right arrow was pressed');
             currentIndex--;
         }
-        if (event.key === 'D') {
+        if (event.key === 'd') {
             console.log('D was pressed');
-            init_DialogueSection(contentS1Index + 1);
-           
+            // Clear any existing timer
+            if (storyTimer) {
+                clearTimeout(storyTimer);
+            }
+
+            // Increment 
+            contentS1Index++;
+            if (contentS1Index >= contentS1.length) {
+                contentS1Index = contentS1.length - 1;
+            }
+            $('main').empty();
+
+
+            init_DialogueSection();
+
+
         }
-        if (event.key === 'A') {
+        if (event.key === 'a') {
             console.log('A was pressed');
-             init_DialogueSection(contentS1Index - 1);
+
+            if (storyTimer) {
+                clearTimeout(storyTimer);
+            }
+
+            // Decrement 
+            contentS1Index--;
+            if (contentS1Index < 0) {
+                contentS1Index = 0;
+            }
+
+
+            $('main').empty();
+
+
+            init_DialogueSection();
         }
     });
 })
