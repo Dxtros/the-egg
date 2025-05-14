@@ -231,29 +231,21 @@ font-weight: 700;
 }
 .fade-to-grey {
     animation-name:fade-to-grey;
-    animation-duration:2s;
+    animation-duration:1s;
     animation-iteration-count: 1;
-    /* color: rgba(255,255,255,.4); */
+    color: rgba(255,255,255,.2); 
 }
 @keyframes fade-to-grey {
     0% {color: rgba(255,255,255,1);}
-    100% {color: rgba(255,255,255,.4);}
+    100% {color: rgba(255, 255, 255, 0.2);}
+}
+
+.grey-text {
+    color: rgba(255,255,255,.2); 
 }
 
 
-.fade-text{
-    animation: fade-anim 10s forwards; 
-}
 
-@keyframes fade-anim {
-    0% {
-        opacity:1;
-    }
-
-    100% {
-        opacity: 0.5;
-    }
-}
 
 .button-cont {
     position: absolute;

@@ -51,13 +51,15 @@ $(document).ready(function () {
             hasButton: true, // write function for this
             timer: '',
             lingerN: false,
-            lingerP: false //write function for this
+            lingerP: false, //write function for this
+            skipFadeN: false, // Narrator will use fadeout animation
+            skipFadeP: false  // Not relevant since person is lingering
         },
         {
             id: 2,
             narrator: '“You died,” <span class="small-narrator">I said, matter-of-factly no point in mincing words.</span>',
             narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
-            anim: 'animate__animated',
+            anim: '',
             outAnim: '',
             person: '“What… what happened?” <span class="small-narrator">You asked.</span> “Where am I?”',
             personClass: 'person p-pos-mid fade-to-grey',
@@ -66,22 +68,26 @@ $(document).ready(function () {
             hasButton: false, // write function for this
             timer: '8000',
             lingerN: false,
-            lingerP: true //write function for this
+            lingerP: false,
+            skipFadeN: false,
+            skipFadeP: false
         },
         {
             id: 3,
             narrator: '',
             narratorClass: 'narrator',
-            anim: 'animate__animated animate__fadeIn',
+            anim: '',
             outAnim: '',
             person: '“There was a… a truck and it was skidding…”',
-            personClass: 'person p-pos-mid',
+            personClass: 'person p-pos-mid animate__animated animate__fadeIn',
             story: '',
             storyClass: '',
             hasButton: true, // write function for this
             timer: '',
             lingerN: false,
-            lingerP: false //write function for this
+            lingerP: false, //write function for this
+            skipFadeN: false,
+            skipFadeP: false
 
         },
 
@@ -89,17 +95,56 @@ $(document).ready(function () {
         {
             id: 4,
             narrator: '“Yup,” <span class="small-narrator">I said.</span>',
-            narratorClass: 'narrator n-pos-mid',
-            anim: 'animate__animated animate__fadeIn',
+            narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+            anim: '',
             outAnim: '',
             person: '“There was a… a truck and it was skidding…”',
-            personClass: 'person fade-text p-pos-mid',
-            story: '',
-            storyClass: '',
+            personClass: 'person fade-to-grey p-pos-mid',
+
             hasButton: false, // write function for this
             timer: '3000',
             lingerN: false,
-            lingerP: false //write function for this
+            lingerP: true, //write function for this
+            skipFadeN: false,
+            skipFadeP: false
+        }
+        ,
+
+
+        {
+            id: 5,
+            narrator: '',
+            narratorClass: 'narrator',
+            anim: '',
+            outAnim: '',
+            person: '<span class="grey-text">"There was a… a truck and it was skidding…”</span><br><span class="animate__animated animate__fadeIn">“I...I died?”</span>',
+            personClass: 'person p-pos-mid ',
+
+            hasButton: true, // write function for this
+            timer: '',
+            lingerN: false,
+            lingerP: true, //write function for this
+            skipFadeN: false,
+            skipFadeP: false
+        }
+        ,
+
+
+        {
+            id: 6,
+            narrator: '“Yup. But don\'t feel bad about it. Everyone dies,”',
+            narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+            anim: '',
+            outAnim: '',
+            person: '<span class="grey-text">"There was a… a truck and it was skidding…”</span><br><span class="fade-to-gray">“I...I died?”</span>',
+            personClass: 'person p-pos-mid',
+
+            hasButton: false, // write function for this
+            timer: '4000',
+            lingerN: false,
+            lingerP: false, //write function for this
+            skipFadeN: false,
+            skipFadeP: false
         }
     ];
 
@@ -199,7 +244,7 @@ $(document).ready(function () {
             // For example, start a fade-out after fade-in completes
             element.classList.remove('animate__fadeIn');
             element.classList.add('animate__fadeOut', 'animate__slow');
-            
+
 
             timerEnd = false;
         }
@@ -240,62 +285,109 @@ $(document).ready(function () {
 
 
         $('main').html(`<div class="segment1-div"><p class="${segment1.personClass} ${segment1.anim}">${segment1.person}</p><p class="${segment1.narratorClass} ${segment1.anim}">${segment1.narrator}</p></div>`);
-   
-        
-     }
+
+
+    }
     function display_button(segment1) {
         $('main').prepend(`<img class="button-cont" src="img/cont-button-v1.svg"></img>`);
 
 
         $('.button-cont').on('click', function () {
-        
+
             console.log("cont clicked");
-if(segment1.lingerP){
-    $('.person').addClass('fade-text')
-}
+            if (segment1.lingerP) {
+                $('.person').addClass('fade-text')
+            }
             update_dialogue(segment1)
-         
+
         });
     }
 
     function timed_dialogue(segment1) {
-        // automatically advance after specified timer delay, fade out after anim 
-        console.log("Setting timeout for next segment");
+        console.log("Setting timeout for next segment",
+            "lingerP:", segment1.lingerP,
+            "lingerN:", segment1.lingerN,
+            "skipFadeP:", segment1.skipFadeP,
+            "skipFadeN:", segment1.skipFadeN);
 
         storyTimer = setTimeout(function () {
-            const elements = document.querySelectorAll('p');
+            // Find elements using the class from the segment data
+            const narratorElements = document.querySelectorAll('.' + segment1.narratorClass.split(' ')[0]);
+            const personElements = document.querySelectorAll('.' + segment1.personClass.split(' ')[0]);
 
+            let elementsToFade = [];
+            let elementsToDirect = []; // Elements that will skip animation
 
+            // Process narrator elements
+            if (narratorElements.length > 0) {
+                if (segment1.skipFadeN) {
+                    // Add to direct transition list (no animation)
+                    elementsToDirect = [...elementsToDirect, ...narratorElements];
+                } else if (!segment1.lingerN) {
+                    // Add to fade list if not lingering
+                    elementsToFade = [...elementsToFade, ...narratorElements];
+                }
+            }
 
+            // Process person elements
+            if (personElements.length > 0) {
+                if (segment1.skipFadeP) {
+                    // Add to direct transition list (no animation)
+                    elementsToDirect = [...elementsToDirect, ...personElements];
+                } else if (!segment1.lingerP) {
+                    // Add to fade list if not lingering
+                    elementsToFade = [...elementsToFade, ...personElements];
+                }
+            }
 
-
-
-            let animationsCompleted = 0;
-
-            // Loop through each paragraph element
-            elements.forEach(element => {
-                // Apply fadeOut to each individual element
-                timerEnd = true;
-                fadeOut(element, timerEnd);
-
-
-                element.addEventListener('animationend', () => {
-                    // Do something when the animation finishes
-                    console.log('fade out ended', element.classList);
-
-                    // Increment counter
-                    animationsCompleted++;
-
-                    // Only update dialogue once all animations are complete
-                    if (animationsCompleted === elements.length) {
-                        console.log("anims complete, updating dialgue")
-                        update_dialogue()
-                    }
-
+            // If all elements skip animation or linger, move directly to next dialogue
+            if (elementsToFade.length === 0) {
+                // Instantly hide any elements meant to skip animation
+                elementsToDirect.forEach(element => {
+                    element.style.display = "none";
                 });
+
+                // Move to next dialogue immediately
+                update_dialogue();
+                return;
+            }
+
+            // Hide elements that should skip animation
+            elementsToDirect.forEach(element => {
+                element.style.display = "none";
             });
 
+            // Set up animation completion tracking
+            let animationsCompleted = 0;
+            const totalAnimations = elementsToFade.length;
 
+            // Function to handle animation end
+            const handleAnimEnd = (event) => {
+                if (event.animationName === 'fadeOut') {
+                    animationsCompleted++;
+
+                    // Remove the event listener after it's fired
+                    event.target.removeEventListener('animationend', handleAnimEnd);
+
+                    if (animationsCompleted === totalAnimations) {
+                        console.log("all animations complete, updating dialogue");
+                        update_dialogue();
+                    }
+                }
+            };
+
+            // Apply fadeOut to selected elements
+            elementsToFade.forEach(element => {
+                if (!element) return;
+
+                // Add the event listener before starting the animation
+                element.addEventListener('animationend', handleAnimEnd);
+
+                // Start the fade out
+                timerEnd = true;
+                element.classList.remove('animate__fadeIn', 'animate__fadeOut');
+                element.classList.add('animate__animated', 'animate__fadeOut');
+            });
         }, segment1.timer);
     }
 
@@ -305,40 +397,42 @@ if(segment1.lingerP){
     function update_dialogue() {
 
         //any logic for in between text updates
-// const elements = document.querySelectorAll('p');
+        // const elements = document.querySelectorAll('p');
 
 
 
 
 
 
-//             let animationsCompleted = 0;
+        //             let animationsCompleted = 0;
 
-//             // Loop through each paragraph element
-//             elements.forEach(element => {
-//                 // Apply fadeOut to each individual element
-//                 timerEnd = true;
-//                 fadeOut(element, timerEnd);
+        //             // Loop through each paragraph element
+        //             elements.forEach(element => {
+        //                 // Apply fadeOut to each individual element
+        //                 timerEnd = true;
+        //                 fadeOut(element, timerEnd);
 
 
-//                 element.addEventListener('animationend', () => {
-//                     // Do something when the animation finishes
-//                     console.log('fade out ended', element.classList);
+        //                 element.addEventListener('animationend', () => {
+        //                     // Do something when the animation finishes
+        //                     console.log('fade out ended', element.classList);
 
-//                     // Increment counter
-//                     animationsCompleted++;
+        //                     // Increment counter
+        //                     animationsCompleted++;
 
-//                     // Only update dialogue once all animations are complete
-//                     if (animationsCompleted === elements.length) {
-//                         contentS1Index++;
-//         init_DialogueSection();
-//                     }
+        //                     // Only update dialogue once all animations are complete
+        //                     if (animationsCompleted === elements.length) {
+        //                         contentS1Index++;
+        //         init_DialogueSection();
+        //                     }
 
-//                 });
-//             });
+        //                 });
+        //             });
+
+
         contentS1Index++;
-         init_DialogueSection();
-        
+        init_DialogueSection();
+
     }
 
 
