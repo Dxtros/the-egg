@@ -28,10 +28,13 @@
 
 
 main {
-
+    height:100vh;
+    width:100vw;
     position: relative;
     z-index: 5;
     overflow: hidden;
+
+  transition: opacity 0.15s ease-in-out;  /* Adjust timing to your preference */
    
 }
 
@@ -130,12 +133,13 @@ main {
     padding: 0 2rem;
 }
 .segment1-div {
+    height:100vh;
+    width:100vw;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 15px;
    padding: 0 4rem;
-
     overflow:hidden;
 
 }
@@ -209,7 +213,7 @@ main {
 }
 
 .person {
-    color: #FFF;
+    color: rgba(255,255,255,1);
 
     font-family: "Palanquin Dark";
     font-size: 36px;
@@ -225,17 +229,29 @@ font-style: normal;
 font-weight: 700;
 
 }
-.fade-text{
-   color: var(--fade-word, rgba(255, 255, 255, 0.20)) !important;
+.fade-to-grey {
+    animation-name:fade-to-grey;
+    animation-duration:1s;
+    animation-iteration-count: 1;
+    color: rgba(255,255,255,.2); 
+}
+@keyframes fade-to-grey {
+    0% {color: rgba(255,255,255,1);}
+    100% {color: rgba(255, 255, 255, 0.2);}
 }
 
-.button-cont {
-    
-    position: absolute;
-margin: 4rem;
-    bottom: 0;
-    z-index: 10;
-    right: 0;
-    overflow: hidden;
+.grey-text {
+    color: rgba(255,255,255,.2); 
+}
 
+
+
+
+.button-cont {
+    position: absolute;
+    /* margin: 4rem; */
+    bottom: 60px;
+    z-index: 10;
+    right: 60px;
+    overflow: hidden;
 }
