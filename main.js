@@ -218,7 +218,7 @@ $(document).ready(() => {
       element.classList.remove('animate__fadeIn', 'animate__fadeOut');
 
       // Add fade out animation
-      element.classList.add('animate__animated', 'animate__fadeOut');
+      element.classList.add('animate__animated', 'animate__fadeOut', 'animate__slow');
 
       // Set up one-time animation end listener
       const handleAnimEnd = (event) => {
@@ -500,20 +500,38 @@ $(document).ready(() => {
       {
         narrator: 'You were on your way home when you died.',
         narratorClass: 'intro-narrator',
-        anim: 'animate__animated animate__fadeIn',
+        anim: 'animate__animated animate__fadeIn animate__slow',
         timer: 4000
       },
       {
         narrator: 'It was a car accident. Nothing particularly remarkable, but fatal nonetheless.',
         narratorClass: 'intro-narrator',
-        anim: 'animate__animated animate__fadeIn',
+        anim: 'animate__animated animate__fadeIn animate__slow',
+        timer: 5000
+      },
+      {
+        narrator: 'You left behind a wife and two children.',
+        narratorClass: 'intro-narrator',
+        anim: 'animate__animated animate__fadeIn animate__slow',
         timer: 4000
       },
       {
-        narrator: 'lorem ipsum',
+        narrator: "It was a painless death. The EMTs tried their best to save you, but to no avail.",
         narratorClass: 'intro-narrator',
-        anim: 'animate__animated animate__fadeIn',
-        timer: 3000
+        anim: 'animate__animated animate__fadeIn animate__slow',
+        timer: 5000
+      },
+      {
+        narrator: "Your body was so utterly shattered you were better off, trust me.",
+        narratorClass: 'intro-narrator',
+        anim: 'animate__animated animate__fadeIn animate__slow',
+        timer: 5000
+      },
+      {
+        narrator: "And that\’s when you met me.",
+        narratorClass: 'intro-narrator',
+        anim: 'animate__animated animate__fadeIn animate__slow',
+        timer: 5000
       }
     ],
 
@@ -524,7 +542,7 @@ $(document).ready(() => {
         narratorClass: 'narrator',
         person: '"What… what happened?" <span class="nar">You asked.</span> "Where am I?"',
         personClass: 'person p-pos-mid',
-        anim: 'animate__animated animate__fadeIn',
+        anim: 'animate__animated animate__fadeIn animate__slower',
         hasButton: true,
         lingerP: false,
         skipFadeP: false
@@ -535,7 +553,7 @@ $(document).ready(() => {
         person: '"What… what happened?" <span class="nar">You asked.</span> "Where am I?"',
         personClass: 'person p-pos-mid fade-to-grey',
         hasButton: false,
-        timer: 8000,
+        timer: 6000,
         lingerN: false,
         lingerP: false,
         skipFadeN: false,

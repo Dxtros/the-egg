@@ -13,7 +13,7 @@ particlesJS("particles-js", {
         "shape": {
             "type": "circle",
             "stroke": {
-                "width": 0,
+                "width": .5,
                 "color": "#000000"
             },
             "polygon": {
