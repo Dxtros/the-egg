@@ -205,12 +205,14 @@ main {
 
 .small-narrator{
     
-
+color:#FEFFEF;
     font-family: "Quicksand";
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
 }
+
+
 
 .person {
     color: rgba(255,255,255,1);
@@ -239,13 +241,31 @@ font-weight: 700;
     0% {color: rgba(255,255,255,1);}
     100% {color: rgba(255, 255, 255, 0.2);}
 }
-
+.nar {
+   
+    font-family: "Quicksand";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+}
 .grey-text {
     color: rgba(255,255,255,.2); 
 }
 
 
-
+.grey-button {
+     animation-name:fade-button-to-grey;
+    animation-duration:1s;
+    animation-iteration-count: 1;
+    color: rgba(255,255,255,.2); 
+    border-color: rgba(255,255,255,.2);
+}
+@keyframes fade-button-to-grey {
+    0% {color: rgba(255,255,255,1); border-color: rgba(255,255,255,1);}
+    100% {color: rgba(255, 255, 255, 0.2); border-color: rgba(255,255,255,.2);}
+}
+/*box dissapears completely after click*/
+/*remove anim on button*/
 
 .button-cont {
     position: absolute;
@@ -254,4 +274,38 @@ font-weight: 700;
     z-index: 10;
     right: 60px;
     overflow: hidden;
+}
+
+
+.question-option:hover p {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.questionScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 0 2rem;
+}
+
+.question-options-container {
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 5rem;
+}
+
+.question-options-button {
+    color:#FEFFEF;
+
+    padding:1rem 2rem;
+    cursor:pointer;
+
+    border: 2px solid #FEFFEF;
+
+
 }
