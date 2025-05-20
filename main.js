@@ -398,7 +398,8 @@ $(document).ready(() => {
         if(event.key === 'z'){
           
            $('main').empty();
-           this.state.dialogueIndex = 11;
+           this.state.dialogueIndex = 13;
+           this.state.activeSection = 'dialogue'
             this.displayDialogueContent();
         }
 
@@ -664,37 +665,127 @@ console.log(this.activeSection)
         skipFadeP: false
       },
        {
-        narrator: 'You looked at me with fascination.',
-        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        narrator: 'You looked at me with fascination. To you, I didn\’t look like God. I just looked like some man. Or possibly a woman. Some vague authority figure, maybe. More of a grammar school teacher than the almighty.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn animate__slower',
         personClass: 'person',
         lingerN: false,
+        lingerP: false,
+        hasButton:true,
+        skipFadeN: true,
+        skipFadeP: false
+      },     
+      {
+        narrator: '“Dont worry”<span class="nar">I said.</span> "They\'ll be fine. Your kids will remember you as perfect in every way."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: 'They didn\’t have time to grow contempt for you.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: 'Your wife will cry on the outside, but will be secretly relieved. To be fair, your marriage was falling apart.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '"If it\’s any consolation, she\’ll feel very guilty for feeling relieved.”',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">"If it\’s any consolation, she\’ll feel very guilty for feeling relieved.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"oh", <span class= "nar"> you said </span>',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '',
+        narratorClass: 'narrator',
+        person: '“So what happens now? Do I go to heaven or hell or something?”',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        
+        lingerN: false,
         lingerP: true,
-        timer: 3000,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer:3000,
+        lingerN: false,
+        lingerP: true,
         skipFadeN: true,
         skipFadeP: false
       },
       {
-        narrator: '<span class="fade-to-grey">You looked at me with fascination.</span><span class="animate__animated animate__fadeIn">To you, I didn’t look like God. I just looked like some man. Or possibly a woman.</span>',
-        narratorClass: 'narrator-center n-pos-mid',
-        personClass: 'person',
+      narrator: '<span class= "fade-to-grey">“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '“Ah,” <span class="nar">you said.</span> “So the Hindus were right,”',
+        personClass: 'person p-pos-top animate__animated animate__fadeIn',
+        hasButton: true,
+        
         lingerN: false,
         lingerP: true,
-        timer: 3000,
-        skipFadeN: true,
+        skipFadeN: false,
         skipFadeP: false
       },
-       {
-        narrator: '<span class="grey-text">You looked at me with fascination.</span><span class="fade-to-grey"> To you, I didn’t look like God. I just looked like some man. Or possibly a woman.</span><br><span class="animate__animated animate__fadeIn">Some vague authority figure, maybe. More of a grammar school teacher than the almighty.</span>',
-        narratorClass: 'narrator-center n-pos-mid',
+      {
+      narrator: '“All religions are right in their own way,” <span class="nar">I said.</span> “Walk with me.”',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '',
         personClass: 'person',
+        hasButton: false,
+        timer:4000,
         lingerN: false,
         lingerP: true,
-        timer: 3000,
-        skipFadeN: true,
+        skipFadeN: false,
         skipFadeP: false
       }
 
     ],
+
+   //walking sequence 
 
     //question sequence
     questions: {
