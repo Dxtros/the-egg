@@ -212,6 +212,19 @@ color:#FEFFEF;
     font-weight: 400;
 }
 
+.narrator-center {
+    color:#FEFFEF;
+    font-family: "Quicksand";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: left;
+
+    grid-column: span 5 / span 5;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 3;
+}
 
 
 .person {

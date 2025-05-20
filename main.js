@@ -334,6 +334,7 @@ $(document).ready(() => {
           setTimeout(() => {
 
             this.state.dialogueIndex = 7;
+            this.state.activeSection = 'dialogue';
             this.displayDialogueContent();
 
           }, 2000); //delay before continuing set here, should add a fade out
@@ -394,7 +395,13 @@ $(document).ready(() => {
       document.addEventListener('keydown', (event) => {
         console.log(`Key pressed: ${event.key}`);
 
-
+        if(event.key === 'z'){
+          
+           $('main').empty();
+           this.state.dialogueIndex = 13;
+           this.state.activeSection = 'dialogue'
+            this.displayDialogueContent();
+        }
 
         if (event.key === 'q') {
           console.log('Q pressed - testing question screen');
@@ -434,17 +441,14 @@ $(document).ready(() => {
           else if (this.state.activeSection === 'dialogue') {
             // For dialogue section, advance to next dialogue
             this.state.dialogueIndex++;
-            if (this.state.dialogueIndex >= StoryContent.dialogue.length) {
-              // Cap at the end of dialogue array
-              this.state.dialogueIndex = StoryContent.dialogue.length - 1;
-            }
+         
             // Refresh
             $('main').empty();
             this.displayDialogueContent();
           }
           else if (this.state.activeSection === 'interactive') {
             // For interactive question section
-
+console.log(this.activeSection)
             // Otherwise, simulate clicking the first available question
             if (!this.state.questionScreen.placeAsked) {
               this.handleQuestionClick('afterlife');
@@ -607,7 +611,7 @@ $(document).ready(() => {
       {
         narrator: '',
         narratorClass: 'narrator',
-        person: '“My kids… my wife,”<span class="nar">you said.</span>',
+        person: '“My kids… my wife,”<span class="nar"> you said.</span>',
         personClass: 'person p-pos-bot animate__animated animate__fadeIn',
         hasButton: true,
         lingerN: false,
@@ -625,7 +629,163 @@ $(document).ready(() => {
         skipFadeN: true,
         skipFadeP: true
       },
+      {
+        narrator: '<span class = "fade-to-grey">“What about them?”<span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“My kids… my wife,”</span><span class="nar grey-text"> you said.</span><br><span class="animate__animated animate__fadeIn">Will they be all right?</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="animate__animated animate__fadeIn">“That\’s what I like to see,” <span class="nar"> I said.</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“My kids… my wife,”</span><span class="nar grey-text"> you said.</span><br><span class="grey-text">Will they be all right?</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        lingerN: true,
+        lingerP: true,
+        timer: 2000,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">“That\’s what I like to see,”<span class="nar"> I said.</span></span><br><span class="animate__animated animate__fadeIn">“You just died and your main concern is for your family. That\’s good stuff right there.”</span>',
+        narratorClass: 'narrator n-pos-mid animate__slower',
+        person: '<span class="grey-text">“My kids… my wife,”</span><span class="nar grey-text"> you said.</span><br><span class="grey-text">Will they be all right?</span>',
+        personClass: 'person p-pos-bot animate__slower',
+        hasButton: false,
+        lingerN: false,
+        lingerP: false,
+        timer: 6000,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+       {
+        narrator: 'You looked at me with fascination. To you, I didn\’t look like God. I just looked like some man. Or possibly a woman. Some vague authority figure, maybe. More of a grammar school teacher than the almighty.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn animate__slower',
+        personClass: 'person',
+        lingerN: false,
+        lingerP: false,
+        hasButton:true,
+        skipFadeN: true,
+        skipFadeP: false
+      },     
+      {
+        narrator: '“Dont worry”<span class="nar">I said.</span> "They\'ll be fine. Your kids will remember you as perfect in every way."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: 'They didn\’t have time to grow contempt for you.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: 'Your wife will cry on the outside, but will be secretly relieved. To be fair, your marriage was falling apart.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '"If it\’s any consolation, she\’ll feel very guilty for feeling relieved.”',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">"If it\’s any consolation, she\’ll feel very guilty for feeling relieved.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"oh", <span class= "nar"> you said </span>',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '',
+        narratorClass: 'narrator',
+        person: '“So what happens now? Do I go to heaven or hell or something?”',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+        narrator: '“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer:3000,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+      narrator: '<span class= "fade-to-grey">“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '“Ah,” <span class="nar">you said.</span> “So the Hindus were right,”',
+        personClass: 'person p-pos-top animate__animated animate__fadeIn',
+        hasButton: true,
+        
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: false
+      },
+      {
+      narrator: '“All religions are right in their own way,” <span class="nar">I said.</span> “Walk with me.”',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer:4000,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: false
+      }
+
     ],
+
+   //walking sequence 
 
     //question sequence
     questions: {
@@ -639,7 +799,6 @@ $(document).ready(() => {
           id: "afterlife",
           text: '"is this the afterlife"',
           class: 'person question-options-button',
-
           answer: {
             text: '"More or less"',
             class: 'narrator animate__animated animate__fadeIn',
