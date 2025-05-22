@@ -14,25 +14,27 @@
 
 /* ---- particles.js container ---- */
 #particles-js {
-    position: absolute;
+    position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #000000;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     z-index: -1;
     overflow: hidden;
+    top: 0;
+    left: 0;
     
 }
 
 
 main {
-    height:100vh;
+    height:auto;
     width:100vw;
     position: relative;
     z-index: 5;
-    overflow: hidden;
+    overflow: visible;
 
   transition: opacity 0.15s ease-in-out;  /* Adjust timing to your preference */
    
@@ -322,3 +324,68 @@ font-weight: 700;
 
 
 }
+
+/* scroll section */
+
+.scroll-container {
+  height: 500vh; /* Make container taller than viewport to enable scrolling */
+  position: relative;
+  background: transparent;
+}
+.intro-scroll{
+     position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: left;
+  max-width: 800px;
+  color:#FEFFEF;
+}
+.scroll-text {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FEFFEF;
+  font-family: "Noto Serif";
+  font-size: 36px;
+  text-align: left;
+  max-width: 800px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.scroll-text.active {
+  opacity: 1;
+}
+
+.highlight-text {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.scroll-indicator {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #FEFFEF;
+  font-family: "Quicksand";
+  font-size: 18px;
+  opacity: 0.7;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0.4; }
+}
+
+.scroll-text.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    
+}
+
+

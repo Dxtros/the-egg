@@ -17,6 +17,12 @@ $(document).ready(() => {
       activeSection: 'landing', // 'landing', 'intro', 'dialogue', 'ending'
       activeTimer: null,
       animatingOut: false,
+      scrollSection: {
+        currentSegment: 0,
+        totalSegments: 0,
+        hasInitialized: false,
+        isLast: false
+      },
       questionScreen: {
         afterlifeAsked: false,
         godAsked: false,
@@ -104,6 +110,12 @@ $(document).ready(() => {
       if (this.state.dialogueIndex === 6) {
         console.log('Transitioning to question screen');
         this.showQuestionScreen();
+        return;
+      }
+
+       if (this.state.dialogueIndex === 22) {
+        console.log('Transitioning to walking section');
+        this.initScrollSection();
         return;
       }
 
@@ -383,24 +395,128 @@ $(document).ready(() => {
 
     //end question section code ================
 
+    //scroll section code====================
 
+    // Initialize and display the scroll section
+    initScrollSection() {
+      console.log('Initializing scroll section');
+
+      this.state.activeSection = 'scrollSection';
+      this.state.scrollSection.currentSegment = 0;
+      this.state.scrollSection.totalSegments = StoryContent.scrollSection.length;
+      this.state.scrollSection.hasInitialized = true;
+     
+
+      // Create scroll container
+      $('main').html(`
+    <div class="scroll-container">
+      ${StoryContent.scrollSection.map(segment =>
+        `<div id="${segment.id}" class="${segment.class}">${segment.content}</div>`
+      ).join('')}
+      <div class="scroll-indicator">Scroll to continue the story...</div>
+    </div>
+  `);
+
+      // Initialize scroll event listener
+      this.bindScrollEvents();
+      const segmentElement = $(`#scroll-1`);
+        segmentElement.addClass('active');
+           
+    },
+
+    // Bind scroll events for the scroll section
+    bindScrollEvents() {
+      $(window).on('scroll.storyScroll', () => {
+        if (this.state.activeSection !== 'scrollSection') {
+          return;
+        }
+
+        const scrollPosition = $(window).scrollTop();
+        const windowHeight = $(window).height();
+        const documentHeight = $(document).height();
+        // Calculate scroll progress
+
+        const scrollPercentage = scrollPosition / (documentHeight - windowHeight);
+
+        console.log('Scroll percentage:', scrollPercentage);
+
+        // Update each segment's visibility
+        StoryContent.scrollSection.forEach((segment, index) => {
+           const segmentElement = $(`#${segment.id}`);
+          const segmentStart = index / StoryContent.scrollSection.length;
+          const segmentPeak = (index + 0.5) / StoryContent.scrollSection.length;
+          const segmentEnd = (index + 1) / StoryContent.scrollSection.length;
+       
+
+          // Remove all classes first
+          segmentElement.removeClass('active fade-out');
+
+          if (scrollPercentage >= segmentStart && scrollPercentage < segmentPeak) {
+            // Fading in
+            segmentElement.addClass('active');
+            this.state.scrollSection.currentSegment = Math.max(this.state.scrollSection.currentSegment, index + 1);
+          } else if (scrollPercentage >= segmentPeak && scrollPercentage < segmentEnd) {
+            // At peak visibility
+            segmentElement.addClass('active');
+          } else if (scrollPercentage >= segmentEnd && index < StoryContent.scrollSection.length - 1) {
+            // Fading out (except for the last element)
+            segmentElement.addClass('fade-out');
+           
+
+          }
+          
+        else if (scrollPercentage === segmentEnd) {
+            this.exitScrollSection();
+          }
+        });
+      });
+    },
+
+    // Clean up and exit scroll section
+    exitScrollSection() {
+      console.log('Exiting scroll section');
+
+      // Remove scroll event listener
+      $(window).off('scroll.storyScroll');
+
+
+      // Transition to the next section
+      setTimeout(() => {
+        // Clean up
+       
+
+        // Move to dialogue section after scroll section
+        this.state.activeSection = 'dialogue';
+        this.state.dialogueIndex = 23; // Adjust this index to wherever you want to continue the story
+        this.displayDialogueContent();
+      }, 2000);
+    },
 
 
 
 
     // Debug controls
     bindDebugControls() {
+
+
       console.log('Binding debug keyboard controls');
 
       document.addEventListener('keydown', (event) => {
         console.log(`Key pressed: ${event.key}`);
 
-        if(event.key === 'z'){
-          
-           $('main').empty();
-           this.state.dialogueIndex = 13;
-           this.state.activeSection = 'dialogue'
-            this.displayDialogueContent();
+
+        if (event.key === 's') {
+          console.log('S pressed - jumping to scroll section');
+          $('main').empty();
+          this.initScrollSection();
+        }
+
+        if (event.key === 'z') {
+
+          $('main').empty();
+          this.state.dialogueIndex = 13;
+          this.state.activeSection = 'dialogue'
+          this.displayDialogueContent();
         }
 
         if (event.key === 'q') {
@@ -441,14 +557,14 @@ $(document).ready(() => {
           else if (this.state.activeSection === 'dialogue') {
             // For dialogue section, advance to next dialogue
             this.state.dialogueIndex++;
-         
+
             // Refresh
             $('main').empty();
             this.displayDialogueContent();
           }
           else if (this.state.activeSection === 'interactive') {
             // For interactive question section
-console.log(this.activeSection)
+            console.log(this.activeSection)
             // Otherwise, simulate clicking the first available question
             if (!this.state.questionScreen.placeAsked) {
               this.handleQuestionClick('afterlife');
@@ -664,16 +780,16 @@ console.log(this.activeSection)
         skipFadeN: false,
         skipFadeP: false
       },
-       {
+      {
         narrator: 'You looked at me with fascination. To you, I didn\’t look like God. I just looked like some man. Or possibly a woman. Some vague authority figure, maybe. More of a grammar school teacher than the almighty.',
         narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn animate__slower',
         personClass: 'person',
         lingerN: false,
         lingerP: false,
-        hasButton:true,
+        hasButton: true,
         skipFadeN: true,
         skipFadeP: false
-      },     
+      },
       {
         narrator: '“Dont worry”<span class="nar">I said.</span> "They\'ll be fine. Your kids will remember you as perfect in every way."',
         narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
@@ -728,7 +844,7 @@ console.log(this.activeSection)
         person: '"oh", <span class= "nar"> you said </span>',
         personClass: 'person p-pos-bot animate__animated animate__fadeIn',
         hasButton: true,
-        
+
         lingerN: false,
         lingerP: false,
         skipFadeN: false,
@@ -740,7 +856,7 @@ console.log(this.activeSection)
         person: '“So what happens now? Do I go to heaven or hell or something?”',
         personClass: 'person p-pos-bot animate__animated animate__fadeIn',
         hasButton: true,
-        
+
         lingerN: false,
         lingerP: true,
         skipFadeN: false,
@@ -752,40 +868,91 @@ console.log(this.activeSection)
         person: '',
         personClass: 'person',
         hasButton: false,
-        timer:3000,
+        timer: 3000,
         lingerN: false,
         lingerP: true,
         skipFadeN: true,
         skipFadeP: false
       },
       {
-      narrator: '<span class= "fade-to-grey">“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”</span>',
+        narrator: '<span class= "fade-to-grey">“Neither,”<span class="nar"> I said.</span> “You’ll be reincarnated.”</span>',
         narratorClass: 'narrator n-pos-top',
         person: '“Ah,” <span class="nar">you said.</span> “So the Hindus were right,”',
         personClass: 'person p-pos-top animate__animated animate__fadeIn',
         hasButton: true,
-        
+
         lingerN: false,
         lingerP: true,
         skipFadeN: false,
         skipFadeP: false
       },
       {
-      narrator: '“All religions are right in their own way,” <span class="nar">I said.</span> “Walk with me.”',
+        narrator: '“All religions are right in their own way,” <span class="nar">I said.</span> “Walk with me.”',
         narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
         person: '',
         personClass: 'person',
         hasButton: false,
-        timer:4000,
+        timer: 4000,
         lingerN: false,
         lingerP: true,
         skipFadeN: false,
         skipFadeP: false
+      },
+      {
+        narrator: '',
+      },
+       {
+        narrator: 'I stopped walking and took you by the shoulders.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">I stopped walking and took you by the shoulders.</span><span class = "animate__animated animate__fadeIn">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span>',
+        narratorClass: 'narrator-center n-pos-mid ',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 5000,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+      narrator: '<span class="grey-text">I stopped walking and took you by the shoulders.</span><span class = "fade-to-grey">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "animate__animated animate__fadeIn">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span>',
+        narratorClass: 'narrator-center n-pos-mid ',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 5000,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: true
+      },
+      {
+      narrator: '<span class="grey-text animate__animated animate__fadeOut">I stopped walking and took you by the shoulders.</span><span class = "grey-text animate__animated animate__fadeOut">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "fade-to-grey animate__animated animate__fadeOut">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span> <span class = "animate__animated animate__fadeIn">You put a tiny part of yourself into the vessel, and when you bring it back out, you\’ve gained all the experiences it had.</span>',
+        narratorClass: 'narrator-center n-pos-mid ',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 8000,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true
       }
 
     ],
 
-   //walking sequence 
+
 
     //question sequence
     questions: {
@@ -815,10 +982,41 @@ console.log(this.activeSection)
             timer: 3000
           }
         }
-      ]
+      ],
 
 
-    }
+    },
+
+    //walking sequence 
+    // Scroll sequence content
+    scrollSection: [
+      {
+        id: 'scroll-1',
+        content: '<span class="nar">You followed along as we strode through the void.</span><span class="person">“Where are we going?”</span>',
+        class: 'scroll-text',
+        triggerPosition: 0 // Triggers when scrolled 20% of viewport height
+      },
+      {
+        id: 'scroll-2',
+        content: '<span class="narrator">“Nowhere in particular,” <span class="nar">I said.</span> “It’s just nice to walk while we talk.”</span>',
+        class: 'scroll-text',
+        triggerPosition: 0.3 // Triggers when scrolled 40% of viewport height
+      },
+      {
+        id: 'scroll-3',
+        content: '<span class="person">“So what\’s the point, then?”</span><span class="nar"> You asked.</span><span class="person">“When I get reborn, I\’ll just be a blank slate, right? A baby. So all my experiences and everything I did in this life won\’t matter.”',
+        class: 'scroll-text',
+        triggerPosition: 0.8
+      },
+      {
+        id: 'scroll-4',
+        content: '<span class="narrator">“Not so!”<span class="nar"> I said.</span> “You have within you all the knowledge and experiences of all your past lives. You just don\’t remember them right now.”</span>',
+        class: 'scroll-text',
+        triggerPosition: 1,
+        
+      }
+    ],
+
   };
 
   // Initialize the story engine
