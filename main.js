@@ -482,14 +482,14 @@ $(document).ready(() => {
 
       // Transition to the next section
       setTimeout(() => {
-        // Clean up
+       
        
 
         // Move to dialogue section after scroll section
         this.state.activeSection = 'dialogue';
-        this.state.dialogueIndex = 23; // Adjust this index to wherever you want to continue the story
+        this.state.dialogueIndex = 23; // index to continue the story
         this.displayDialogueContent();
-      }, 2000);
+      }, 1000);
     },
 
 
@@ -994,13 +994,13 @@ $(document).ready(() => {
         id: 'scroll-1',
         content: '<span class="nar">You followed along as we strode through the void.</span><span class="person">“Where are we going?”</span>',
         class: 'scroll-text',
-        triggerPosition: 0 // Triggers when scrolled 20% of viewport height
+        triggerPosition: 0 // Triggers on load
       },
       {
         id: 'scroll-2',
         content: '<span class="narrator">“Nowhere in particular,” <span class="nar">I said.</span> “It’s just nice to walk while we talk.”</span>',
         class: 'scroll-text',
-        triggerPosition: 0.3 // Triggers when scrolled 40% of viewport height
+        triggerPosition: 0.3 // Triggers when scrolled 30% of viewport height
       },
       {
         id: 'scroll-3',
