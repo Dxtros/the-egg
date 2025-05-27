@@ -487,7 +487,7 @@ $(document).ready(() => {
 
         // Move to dialogue section after scroll section
         this.state.activeSection = 'dialogue';
-        this.state.dialogueIndex = 23; // index to continue the story
+        this.state.dialogueIndex = 28; // index to continue the story
         this.displayDialogueContent();
       }, 1000);
     },
@@ -514,7 +514,7 @@ $(document).ready(() => {
         if (event.key === 'z') {
 
           $('main').empty();
-          this.state.dialogueIndex = 13;
+          this.state.dialogueIndex = 33;
           this.state.activeSection = 'dialogue'
           this.displayDialogueContent();
         }
@@ -948,7 +948,114 @@ $(document).ready(() => {
         lingerP: true,
         skipFadeN: false,
         skipFadeP: true
-      }
+      },
+      {
+        narrator: '“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "animate__animated animate__fadeIn">If we hung out here for long enough, you\’d start remembering everything.</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+       {
+        narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "fade-to-grey">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "animate__animated animate__fadeIn">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "grey-text">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "grey-text">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '“How many times have I been reincarnated, then?”',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+    {
+      //fade on button work around
+      narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "grey-text">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "grey-text">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '“How many times have I been reincarnated, then?”',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer:50,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '“Oh lots. Lots and lots. And into lots of different lives.” <span class="nar">I said.</span> “This time around, you\’ll be a Chinese peasant girl in 540 AD.”',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">“How many times have I been reincarnated, then?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 8000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="fade-to-grey">“Oh lots. Lots and lots. And into lots of different lives.” <span class="nar">I said.</span> “This time around, you\’ll be a Chinese peasant girl in 540 AD.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="animate__animated animate__fadeIn"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+       narrator: 'Well, I guess technically.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="fade-to-grey"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer:2000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+       {
+       narrator: '<span class="fade-to-grey">Well, I guess technically.</span> <span class = "animate__animated animate__fadeIn">Time, as you know it, only exists in your universe. Things are different where I come from.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="grey-text"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer:5000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
 
     ],
 
