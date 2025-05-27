@@ -1051,6 +1051,18 @@ $(document).ready(() => {
         personClass: 'person p-pos-bot',
         hasButton: false,
         timer:5000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+       narrator: '<span class="grey-text">Well, I guess technically.</span> <span class = "fade-to-grey">Time, as you know it, only exists in your universe. Things are different where I come from.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '“Where you come from?” <span class="nar">You said.</span>',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+       
         lingerN: false,
         lingerP: false,
         skipFadeN: false,
