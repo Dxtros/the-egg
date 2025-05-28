@@ -113,7 +113,7 @@ $(document).ready(() => {
         return;
       }
 
-       if (this.state.dialogueIndex === 22) {
+      if (this.state.dialogueIndex === 22) {
         console.log('Transitioning to walking section');
         this.initScrollSection();
         return;
@@ -405,7 +405,7 @@ $(document).ready(() => {
       this.state.scrollSection.currentSegment = 0;
       this.state.scrollSection.totalSegments = StoryContent.scrollSection.length;
       this.state.scrollSection.hasInitialized = true;
-     
+
 
       // Create scroll container
       $('main').html(`
@@ -420,8 +420,8 @@ $(document).ready(() => {
       // Initialize scroll event listener
       this.bindScrollEvents();
       const segmentElement = $(`#scroll-1`);
-        segmentElement.addClass('active');
-           
+      segmentElement.addClass('active');
+
     },
 
     // Bind scroll events for the scroll section
@@ -442,11 +442,11 @@ $(document).ready(() => {
 
         // Update each segment's visibility
         StoryContent.scrollSection.forEach((segment, index) => {
-           const segmentElement = $(`#${segment.id}`);
+          const segmentElement = $(`#${segment.id}`);
           const segmentStart = index / StoryContent.scrollSection.length;
           const segmentPeak = (index + 0.5) / StoryContent.scrollSection.length;
           const segmentEnd = (index + 1) / StoryContent.scrollSection.length;
-       
+
 
           // Remove all classes first
           segmentElement.removeClass('active fade-out');
@@ -461,11 +461,11 @@ $(document).ready(() => {
           } else if (scrollPercentage >= segmentEnd && index < StoryContent.scrollSection.length - 1) {
             // Fading out (except for the last element)
             segmentElement.addClass('fade-out');
-           
+
 
           }
-          
-        else if (scrollPercentage === segmentEnd) {
+
+          else if (scrollPercentage === segmentEnd) {
             this.exitScrollSection();
           }
         });
@@ -482,12 +482,12 @@ $(document).ready(() => {
 
       // Transition to the next section
       setTimeout(() => {
-       
-       
+
+
 
         // Move to dialogue section after scroll section
         this.state.activeSection = 'dialogue';
-        this.state.dialogueIndex = 23; // index to continue the story
+        this.state.dialogueIndex = 28; // index to continue the story
         this.displayDialogueContent();
       }, 1000);
     },
@@ -514,7 +514,7 @@ $(document).ready(() => {
         if (event.key === 'z') {
 
           $('main').empty();
-          this.state.dialogueIndex = 13;
+          this.state.dialogueIndex = 33;
           this.state.activeSection = 'dialogue'
           this.displayDialogueContent();
         }
@@ -901,7 +901,7 @@ $(document).ready(() => {
       {
         narrator: '',
       },
-       {
+      {
         narrator: 'I stopped walking and took you by the shoulders.',
         narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
         person: '',
@@ -926,7 +926,7 @@ $(document).ready(() => {
         skipFadeP: false
       },
       {
-      narrator: '<span class="grey-text">I stopped walking and took you by the shoulders.</span><span class = "fade-to-grey">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "animate__animated animate__fadeIn">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span>',
+        narrator: '<span class="grey-text">I stopped walking and took you by the shoulders.</span><span class = "fade-to-grey">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "animate__animated animate__fadeIn">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span>',
         narratorClass: 'narrator-center n-pos-mid ',
         person: '',
         personClass: 'person',
@@ -938,7 +938,7 @@ $(document).ready(() => {
         skipFadeP: true
       },
       {
-      narrator: '<span class="grey-text animate__animated animate__fadeOut">I stopped walking and took you by the shoulders.</span><span class = "grey-text animate__animated animate__fadeOut">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "fade-to-grey animate__animated animate__fadeOut">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span> <span class = "animate__animated animate__fadeIn">You put a tiny part of yourself into the vessel, and when you bring it back out, you\’ve gained all the experiences it had.</span>',
+        narrator: '<span class="grey-text animate__animated animate__fadeOut">I stopped walking and took you by the shoulders.</span><span class = "grey-text animate__animated animate__fadeOut">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "fade-to-grey animate__animated animate__fadeOut">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span> <span class = "animate__animated animate__fadeIn">You put a tiny part of yourself into the vessel, and when you bring it back out, you\’ve gained all the experiences it had.</span>',
         narratorClass: 'narrator-center n-pos-mid ',
         person: '',
         personClass: 'person',
@@ -948,7 +948,570 @@ $(document).ready(() => {
         lingerP: true,
         skipFadeN: false,
         skipFadeP: true
+      },
+      {
+        narrator: '“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="fade-to-grey">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "animate__animated animate__fadeIn">If we hung out here for long enough, you\’d start remembering everything.</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "fade-to-grey">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "animate__animated animate__fadeIn">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: false
+      },
+      {
+        narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "grey-text">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "grey-text">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '“How many times have I been reincarnated, then?”',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        //fade on button work around
+        narrator: '<span class="grey-text">“You\’ve been in a human for the last 48 years, so you haven\’t stretched out yet and felt the rest of your immense consciousness.</span><span class = "grey-text">If we hung out here for long enough, you\’d start remembering everything.</span><span class = "grey-text">But there\’s no point to doing that between each life.”</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '“How many times have I been reincarnated, then?”',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 50,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '“Oh lots. Lots and lots. And into lots of different lives.” <span class="nar">I said.</span> “This time around, you\’ll be a Chinese peasant girl in 540 AD.”',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">“How many times have I been reincarnated, then?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 8000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="fade-to-grey">“Oh lots. Lots and lots. And into lots of different lives.” <span class="nar">I said.</span> “This time around, you\’ll be a Chinese peasant girl in 540 AD.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="animate__animated animate__fadeIn"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: 'Well, I guess technically.',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="fade-to-grey"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 2000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="fade-to-grey">Well, I guess technically.</span> <span class = "animate__animated animate__fadeIn">Time, as you know it, only exists in your universe. Things are different where I come from.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="grey-text">“How many times have I been reincarnated, then?”</span><span class="grey-text"> "Wait what?"<span class="nar"> You stammered.</span> “You\’re sending me back in time?”</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 5000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="grey-text">Well, I guess technically.</span> <span class = "fade-to-grey">Time, as you know it, only exists in your universe. Things are different where I come from.”</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '“Where you come from?” <span class="nar">You said.</span>',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '“Oh sure,” <span class="nar">I explained</span> “I come from somewhere. Somewhere else. And there are others like me.',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">“Where you come from?” <span class="nar">You said.</span></span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="fade-to-grey">“Oh sure,” <span class="nar">I explained</span> “I come from somewhere. Somewhere else. And there are others like me.</span><span class = "animate__animated animate__fadeIn"> I know you\’ll want to know what it\’s like there, but honestly you wouldn\’t understand.”</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '<span class="grey-text">“Where you come from?” <span class="nar">You said.</span></span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+
+      {
+        narrator: '<span class="grey-text">"Oh sure," <span class="nar">I explained</span> "I come from somewhere. Somewhere else. And there are others like me.</span><span class = "fade-to-grey"> I know you\'ll want to know what it\'s like there, but honestly you wouldn\'t understand."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"Oh," <span class="nar">you said, a little let down.</span> "But wait. If I get reincarnated to other places in time, I could have interacted with myself at some point."',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"Sure. Happens all the time. And with both lives only aware of their own lifespan you don\'t even know it\'s happening."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Oh," <span class="nar">you said, a little let down.</span> "But wait. If I get reincarnated to other places in time, I could have interacted with myself at some point."</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Sure. Happens all the time. And with both lives only aware of their own lifespan you don\'t even know it\'s happening."</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"So what\'s the point of it all?"',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"Seriously?" <span class="nar">I asked.</span> "Seriously? You\'re asking me for the meaning of life? Isn\'t that a little stereotypical?"',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"So what\'s the point of it all?"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Seriously?" <span class="nar">I asked.</span> "Seriously? You\'re asking me for the meaning of life? Isn\'t that a little stereotypical?"</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"Well it\'s a reasonable question," <span class="nar">you persisted.</span>',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="nar">I looked you in the eye.</span> "The meaning of life, the reason I made this whole universe, is for you to mature."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Well it\'s a reasonable question," <span class="nar">you persisted.</span></span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey"><span class="nar">I looked you in the eye.</span> "The meaning of life, the reason I made this whole universe, is for you to mature."</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"You mean mankind? You want us to mature?"',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"No, just you. I made this whole universe for you.',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"You mean mankind? You want us to mature?"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 3000,
+        lingerN: true,
+        lingerP: true,
+        skipFadeN: true,
+        skipFadeP: true,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"No, just you. I made this whole universe for you.</span><span class="animate__animated animate__fadeIn"> With each new life you grow and mature and become a larger and greater intellect."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '<span class="grey-text">"You mean mankind? You want us to mature?"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="grey-text">"No, just you. I made this whole universe for you.</span><span class="fade-to-grey"> With each new life you grow and mature and become a larger and greater intellect."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"Just me? What about everyone else?"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"There is no one else," <span class="nar">I said.</span> "In this universe, there\'s just you and me."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Just me? What about everyone else?"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 5000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"There is no one else," <span class="nar">I said.</span> "In this universe, there\'s just you and me."</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '<span class="nar">You stared blankly at me.</span> "But all the people on earth…"',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"All you. Different incarnations of you."',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey"><span class="nar">You stared blankly at me.</span> "But all the people on earth…"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"All you. Different incarnations of you."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"Wait. I\'m <em>everyone</em>!?"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"Now you\'re getting it," <span class="nar">I said, with a congratulatory slap on the back.</span>',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Wait. I\'m <em>everyone</em>!?"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Now you\'re getting it," <span class="nar">I said, with a congratulatory slap on the back.</span></span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"I\'m every human being who ever lived?"',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"Or who will ever live, yes."',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"I\'m every human being who ever lived?"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 3000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Or who will ever live, yes."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"I\'m Abraham Lincoln?"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"And you\'re John Wilkes Booth, too," <span class="nar">I added.</span>',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"I\'m Abraham Lincoln?"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"And you\'re John Wilkes Booth, too," <span class="nar">I added.</span></span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"I\'m Hitler?" <span class="nar">You said, appalled.</span>',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"And you\'re the millions he killed."',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"I\'m Hitler?" <span class="nar">You said, appalled.</span></span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"And you\'re the millions he killed."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"I\'m Jesus?"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"And you\'re everyone who followed him."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"I\'m Jesus?"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="nar">You fell silent.</span>',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 3000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
+      {
+        narrator: '"Every time you victimized someone, you were victimizing yourself.',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 5000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Every time you victimized someone, you were victimizing yourself.</span><span class="animate__animated animate__fadeIn"> Every act of kindness you\'ve done, you\'ve done to yourself.</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 5000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="grey-text">"Every time you victimized someone, you were victimizing yourself.</span><span class="fade-to-grey"> Every act of kindness you\'ve done, you\'ve done to yourself.</span><span class="animate__animated animate__fadeIn"> Every happy and sad moment ever experienced by any human was, or will be, experienced by you."</span>',
+        narratorClass: 'narrator-center n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 6000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="nar">You thought for a long time.</span>',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 4000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
+      {
+        narrator: '',
+        narratorClass: 'narrator',
+        person: '"Why?" <span class="nar">You asked me.</span> "Why do all this?"',
+        personClass: 'person p-pos-mid animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"Because someday, you will become like me. Because that\'s what you are. You\'re one of my kind. You\'re my child."',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Why?" <span class="nar">You asked me.</span> "Why do all this?"</span>',
+        personClass: 'person p-pos-mid',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"Because someday, you will become like me. Because that\'s what you are. You\'re one of my kind. You\'re my child."</span>',
+        narratorClass: 'narrator n-pos-top',
+        person: '"Whoa," <span class="nar">you said, incredulous.</span> "You mean I\'m a god?"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"No. Not yet. You\'re a fetus. You\'re still growing."',
+        narratorClass: 'narrator n-pos-mid animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"Whoa," <span class="nar">you said, incredulous.</span> "You mean I\'m a god?"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 4000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="fade-to-grey">"No. Not yet. You\'re a fetus. You\'re still growing.</span><span class="animate__animated animate__fadeIn"> Once you\'ve lived every human life throughout all time, you will have grown enough to be born."</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 6000,
+        lingerN: true,
+        lingerP: false,
+        skipFadeN: true,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="grey-text">"No. Not yet. You\'re a fetus. You\'re still growing.</span><span class="fade-to-grey"> Once you\'ve lived every human life throughout all time, you will have grown enough to be born."</span>',
+        narratorClass: 'narrator n-pos-mid',
+        person: '"So the whole universe," <span class="nar">you said,</span> "it\'s just…"',
+        personClass: 'person p-pos-bot animate__animated animate__fadeIn',
+        hasButton: true,
+        lingerN: false,
+        lingerP: true,
+        skipFadeN: false,
+        skipFadeP: true,
+      },
+      {
+        narrator: '"An egg." <span class="nar">I answered.</span> "Now it\'s time for you to move on to your next life."',
+        narratorClass: 'narrator n-pos-top animate__animated animate__fadeIn',
+        person: '<span class="fade-to-grey">"So the whole universe," <span class="nar">you said,</span> "it\'s just…"</span>',
+        personClass: 'person p-pos-bot',
+        hasButton: false,
+        timer: 5000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
+      },
+      {
+        narrator: '<span class="nar">And I sent you on your way.</span>',
+        narratorClass: 'narrator-center n-pos-mid animate__animated animate__fadeIn animate__slower',
+        person: '',
+        personClass: 'person',
+        hasButton: false,
+        timer: 5000,
+        lingerN: false,
+        lingerP: false,
+        skipFadeN: false,
+        skipFadeP: false,
       }
+
 
     ],
 
@@ -1013,7 +1576,7 @@ $(document).ready(() => {
         content: '<span class="narrator">“Not so!”<span class="nar"> I said.</span> “You have within you all the knowledge and experiences of all your past lives. You just don\’t remember them right now.”</span>',
         class: 'scroll-text',
         triggerPosition: 1,
-        
+
       }
     ],
 
