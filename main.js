@@ -36,6 +36,7 @@ $(document).ready(() => {
     init() {
       this.bindEvents();
       console.log('Story engine initialized');
+      AudioManager.init();
     },
 
     // Bind necessary event listeners
@@ -50,6 +51,7 @@ $(document).ready(() => {
     // Start the story experience
     startStory() {
       console.log('Starting story experience');
+       AudioManager.play();
       $('.flashScreen').addClass('flash-anim');
       $('main').empty();
 
@@ -612,7 +614,48 @@ $(document).ready(() => {
       });
     }
   };
+  // Audio management
+  const AudioManager = {
+    backgroundAudio: null,
 
+    init() {
+      // Create audio element
+      this.backgroundAudio = new Audio('/audio/aphex-twin.mp3');
+      this.backgroundAudio.loop = true;
+      this.backgroundAudio.volume = 0.3; // 30% volume
+
+      // Handle audio loading
+      this.backgroundAudio.addEventListener('canplaythrough', () => {
+        console.log('Audio loaded and ready to play');
+      });
+
+      // Handle errors
+      this.backgroundAudio.addEventListener('error', (e) => {
+        console.error('Audio failed to load:', e);
+      });
+    },
+
+    play() {
+      if (this.backgroundAudio) {
+        this.backgroundAudio.play().catch(e => {
+          console.log('Audio play failed:', e);
+          // Modern browsers require user interaction before playing audio
+        });
+      }
+    },
+
+    pause() {
+      if (this.backgroundAudio) {
+        this.backgroundAudio.pause();
+      }
+    },
+
+    setVolume(volume) {
+      if (this.backgroundAudio) {
+        this.backgroundAudio.volume = Math.max(0, Math.min(1, volume));
+      }
+    }
+  };
   // Story content - all dialogue and narrative segments
   const StoryContent = {
     // Intro sequence content
