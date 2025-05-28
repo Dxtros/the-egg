@@ -620,7 +620,7 @@ $(document).ready(() => {
 
     init() {
       // Create audio element
-      this.backgroundAudio = new Audio('/audio/aphex-twin.mp3');
+      this.backgroundAudio = new Audio('audio/aphex-twin.mp3');
       this.backgroundAudio.loop = true;
       this.backgroundAudio.volume = 0.3; // 30% volume
 
