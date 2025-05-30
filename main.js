@@ -287,8 +287,8 @@ $(document).ready(() => {
 
       }
       // Show as grey text and not clickable if already asked
-      else if (this.state.questionScreen.afterlifeAsked && !this.state.questionScreen.showingAnswer) {
-        optionsContent += `<p class="${afterlifeClass} grey-button">${options[0].text}</p>`;
+      else if (this.state.questionScreen.afterlifeAsked && this.state.questionScreen.currentAnswer != 'god') {
+         optionsContent += `<p class="grey-button-no-anim person">${options[0].text}asdfasg</p>`;
       }
       //show the answer if we are asking the correlating question
       if (this.state.questionScreen.currentAnswer === 'afterlife') {
@@ -309,8 +309,8 @@ $(document).ready(() => {
         console.log(godClass)
       }
       // Show as grey text and not clickable if already asked
-      else if (this.state.questionScreen.godAsked && !this.state.questionScreen.showingAnswer) {
-        optionsContent += `<p class="${godClass} grey-button">${options[1].text}</p>`;
+      else if (this.state.questionScreen.godAsked && this.state.questionScreen.currentAnswer != 'afterlife') {
+        optionsContent += `<p class="grey-button-no-anim person">${options[1].text}</p>`;
       }
       //show the answer if we are asking the correlating question
       if (this.state.questionScreen.currentAnswer === 'god') {
@@ -330,13 +330,13 @@ $(document).ready(() => {
       $('main').html(html)
 
       //attach click handlers to buttons
-      if (!this.state.questionScreen.showingAnswer) {
+    
         console.log("click handler init");
         $('.question-option').on('click', (e) => {
           const question = $(e.currentTarget).data('question');
           console.log(question)
           this.handleQuestionClick(question)
-          //bug here ==== grey is only triggered if answer isnt being shown. I dont want click handlers when showing answers but want it to be grey
+
         });
 
         //if both questions have been asked continue story after delay
@@ -344,20 +344,20 @@ $(document).ready(() => {
           this.state.questionScreen.godAsked) {
 
           console.log("Both questions asked, continuing story");
-
+$('.questionScreen').addClass('animate__animated animate__fadeOut animate__slow animate__delay-2s')
           setTimeout(() => {
 
             this.state.dialogueIndex = 7;
             this.state.activeSection = 'dialogue';
             this.displayDialogueContent();
 
-          }, 2000); //delay before continuing set here, should add a fade out
+          }, 3500); //delay before continuing set here, should add a fade out
 
 
 
         }
 
-      }
+      
 
     },
 
@@ -368,7 +368,13 @@ $(document).ready(() => {
 
       this.state.questionScreen.showingAnswer = true;
       this.state.questionScreen.currentAnswer = question
-
+       if (question === 'afterlife') {
+          this.state.questionScreen.afterlifeAsked = true;
+          
+        }
+        if (question === 'god') {
+          this.state.questionScreen.godAsked = true;
+        }
       this.showQuestionScreen();
       //really cool logic that searches the array for the timer value, it stores the options in 
       //opt and then compares to find a the matching question.answer.timer (timer in the array)
@@ -376,21 +382,33 @@ $(document).ready(() => {
         opt => opt.id === question
 
       ).answer.timer;
+
+      $('.questionScreen').removeClass('animate__animated animate__fadeIn');
+    $('.questionScreen').addClass('animate__animated animate__fadeOut animate__slow animate__delay-3s');
+    console.log($('.question-option'))
+    // trying to make un asked question fade out
       //marks questions as asked
       setTimeout(() => {
 
-        if (question === 'afterlife') {
-          this.state.questionScreen.afterlifeAsked = true;
-        }
-        if (question === 'god') {
-          this.state.questionScreen.godAsked = true;
-        }
+
+    
+    
+
+ 
+
 
         //return to setup question screen
+
         this.state.questionScreen.showingAnswer = false;
         this.state.questionScreen.currentAnswer = null;
+      
+        if (this.state.questionScreen.afterlifeAsked &&
+          this.state.questionScreen.godAsked) {
+            return;
+          }
+          else{
         this.showQuestionScreen();
-
+          }
       }, answerTimer);
 
     },
@@ -489,7 +507,7 @@ $(document).ready(() => {
 
         // Move to dialogue section after scroll section
         this.state.activeSection = 'dialogue';
-        this.state.dialogueIndex = 28; // index to continue the story
+        this.state.dialogueIndex = 23; // index to continue the story
         this.displayDialogueContent();
       }, 1000);
     },
@@ -981,7 +999,7 @@ $(document).ready(() => {
         skipFadeP: true
       },
       {
-        narrator: '<span class="grey-text animate__animated animate__fadeOut">I stopped walking and took you by the shoulders.</span><span class = "grey-text animate__animated animate__fadeOut">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "fade-to-grey animate__animated animate__fadeOut">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span> <span class = "animate__animated animate__fadeIn">You put a tiny part of yourself into the vessel, and when you bring it back out, you\’ve gained all the experiences it had.</span>',
+        narrator: '<span class="grey-text animate__animated animate__fadeOut">I stopped walking and took you by the shoulders.</span><span class = "grey-text animate__animated animate__fadeOut">“Your soul is more magnificent, beautiful, and gigantic than you can possibly imagine. A human mind can only contain a tiny fraction of what you are.</span><span class = "fade-to-grey animate__animated animate__fadeOut">It\’s like sticking your finger in a glass of water to see if it\’s hot or cold.</span><br> <span class = "animate__animated animate__fadeIn">You put a tiny part of yourself into the vessel, and when you bring it back out, you\’ve gained all the experiences it had.</span>',
         narratorClass: 'narrator-center n-pos-mid ',
         person: '',
         personClass: 'person',
@@ -1137,9 +1155,9 @@ $(document).ready(() => {
       },
 
       {
-        narrator: '<span class="grey-text">"Oh sure," <span class="nar">I explained</span> "I come from somewhere. Somewhere else. And there are others like me.</span><span class = "fade-to-grey"> I know you\'ll want to know what it\'s like there, but honestly you wouldn\'t understand."</span>',
+        narrator: '<span class="grey-text">“Oh sure,” <span class="nar">I explained</span> “I come from somewhere. Somewhere else. And there are others like me.</span><span class = "fade-to-grey"> I know you\'ll want to know what it\'s like there, but honestly you wouldn\'t understand.”</span>',
         narratorClass: 'narrator n-pos-top',
-        person: '"Oh," <span class="nar">you said, a little let down.</span> "But wait. If I get reincarnated to other places in time, I could have interacted with myself at some point."',
+        person: '“Oh,” <span class="nar">you said, a little let down.</span> “But wait. If I get reincarnated to other places in time, I could have interacted with myself at some point.”',
         personClass: 'person p-pos-bot animate__animated animate__fadeIn',
         hasButton: true,
         lingerN: false,
@@ -1570,12 +1588,12 @@ $(document).ready(() => {
       options: [
         {
           id: "afterlife",
-          text: '"is this the afterlife"',
+          text: '"is this the afterlife?"',
           class: 'person question-options-button',
           answer: {
             text: '"More or less"',
             class: 'narrator animate__animated animate__fadeIn',
-            timer: 3000
+            timer: 5000
           }
         },
         {
@@ -1585,7 +1603,7 @@ $(document).ready(() => {
           answer: {
             text: '"Yup, I\'m God"',
             class: 'narrator animate__animated animate__fadeIn',
-            timer: 3000
+            timer: 5000
           }
         }
       ],

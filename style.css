@@ -141,7 +141,7 @@ main {
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 15px;
-   padding: 0 4rem;
+   padding: 0 7rem;
     overflow:hidden;
 
 }
@@ -272,6 +272,7 @@ font-weight: 700;
      animation-name:fade-button-to-grey;
     animation-duration:1s;
     animation-iteration-count: 1;
+    animation-fill-mode: forwards;
     color: rgba(255,255,255,.2); 
     border-color: rgba(255,255,255,.2);
 }
@@ -291,7 +292,15 @@ font-weight: 700;
     overflow: hidden;
 }
 
+.grey-button-no-anim {
+     color:rgba(255,255,255,.2);
 
+    padding:1rem 2rem;
+    cursor:pointer;
+
+    border: 2px solid rgba(255,255,255,.2);
+  
+}
 .question-option:hover p {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
