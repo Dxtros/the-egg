@@ -97,6 +97,34 @@ main {
     border: 2px #FEFFEF solid;
 
     padding: 2rem 2rem 2rem 2rem;
+
+    transition: all .3s;
+}
+
+.button-begin:hover {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.button-end {
+    color: #FEFFEF;
+    font-family: Rubik;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    border: 2px #FEFFEF solid;
+margin-top: 5rem;
+    padding: 2rem 2rem 2rem 2rem;
+
+ transition: all .3s;
+
+}
+
+.button-end:hover{
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .flashScreen {    
@@ -397,4 +425,25 @@ font-weight: 700;
     
 }
 
+a {
+    color:#FEFFEF;
+    text-decoration: underline;
+}
+a:hover{
+color: #3737d3;
+}
+
+.end-text {
+
+   color: #FEFFEF;
+    font-family: "Quicksand";
+    font-size: 32px;
+   font-weight: 550;
+
+
+}
+
+h1 .end-text{
+    line-height: 1rem;
+}
 

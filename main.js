@@ -124,8 +124,8 @@ $(document).ready(() => {
       // Check if we've reached the end of dialogue content
       if (this.state.dialogueIndex >= StoryContent.dialogue.length) {
         console.log('End of story reached');
-        // this.transitionToEnding(); // Implement when needed
-        return;
+        this.initEndSection(); 
+        
       }
 
       const segment = StoryContent.dialogue[this.state.dialogueIndex];
@@ -511,9 +511,27 @@ $('.questionScreen').addClass('animate__animated animate__fadeOut animate__slow 
         this.displayDialogueContent();
       }, 1000);
     },
+initEndSection(){
+  this.state.activeSection = 'endSection';
+  this.renderEndScreen();
+  console.log('end section init');
+},
+bindEndButton(){
+  $('.button-end').on('click', () => this.startStory());
+},
 
+renderEndScreen(){
+$('main').html(`
+ 
+        <div class="intro-div">
+          <h1 class="narrator">Thanks for watching!</h1>
+          <p class="end-text"><a href="https://galactanet.com/writing.html"> This story</a> was written by Andy Weir and Adapted into an interactive web story by <a href="https://dextros.net"> Dexter Delaski</a></p>
+            <div class="button-end">Restart</div>
+        </div>
 
-
+      `);
+  this.bindEndButton();    
+},
 
     // Debug controls
     bindDebugControls() {
@@ -534,7 +552,7 @@ $('.questionScreen').addClass('animate__animated animate__fadeOut animate__slow 
         if (event.key === 'z') {
 
           $('main').empty();
-          this.state.dialogueIndex = 33;
+          this.state.dialogueIndex = 75;
           this.state.activeSection = 'dialogue'
           this.displayDialogueContent();
         }
