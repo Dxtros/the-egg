@@ -99,7 +99,7 @@ main {
 
     padding: 2rem 2rem 2rem 2rem;
 
-    transition: all 2s;
+    transition: background-color 2s;
 }
 
 .button-begin:hover {
@@ -534,4 +534,53 @@ a:hover {
 
 h1 .end-text {
     line-height: 1rem;
+}
+.mobileScreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    color: #FEFFEF;
+    font-family: "Noto Serif", serif;
+    font-size: 24px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    overflow-y: auto;
+ 
+}
+
+h2 .mobileScreenText {
+
+    font-weight: 100 ;
+}
+.mobileScreenText{
+    display:none;
+
+}
+
+@media (max-width: 768px) { 
+.mobileScreen{
+    display: flex;
+
+}
+.mobileScreenText{
+    display: block;
+   
+}
+h2.mobileScreenText{
+ font-weight: 300 !important;
+ font-size: 24px;
+}
+.landing{
+    display:none;
+}
 }
