@@ -532,12 +532,20 @@ a:hover {
 
 }
 
-h1 .end-text {
-    line-height: 1rem;
+.mobileScreen{
+visibility: hidden;
+max-height: 0;
+display: none;
 }
-.mobileScreen {
-    display: none;
-    position: fixed;
+
+
+
+
+@media (max-width: 768px) { 
+.mobileScreen{
+    visibility: visible;
+    display: flex;
+     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -554,22 +562,7 @@ h1 .end-text {
     justify-content: center;
     text-align: center;
     padding: 2rem;
-    overflow-y: auto;
- 
-}
-
-h2 .mobileScreenText {
-
-    font-weight: 100 ;
-}
-.mobileScreenText{
-    display:none;
-
-}
-
-@media (max-width: 768px) { 
-.mobileScreen{
-    display: flex;
+    max-height: 100vh;
 
 }
 .mobileScreenText{

@@ -69,12 +69,14 @@ $(document).ready(() => {
 
       // Check if we've reached the end of intro content
       if (index >= StoryContent.intro.length) {
+        console.log("reached end of intro content")
         this.transitionToDialogue();
         return;
       }
 
       // Get current segment and display it
       const segment = StoryContent.intro[index];
+      console.log("displaying intro segment:",segment)
       $('main').html(`
         <div class="intro-div">
           <h1 class="${segment.narratorClass} ${segment.anim}">${segment.narrator}</h1>
@@ -125,6 +127,7 @@ $(document).ready(() => {
       if (this.state.dialogueIndex >= StoryContent.dialogue.length) {
         console.log('End of story reached');
         this.initEndSection(); 
+        return;
         
       }
 
