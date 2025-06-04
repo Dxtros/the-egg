@@ -5,7 +5,7 @@
 
 * {
     box-sizing: border-box;
-    
+
 }
 
 
@@ -25,19 +25,20 @@
     overflow: hidden;
     top: 0;
     left: 0;
-    
+
 }
 
 
 main {
-    height:auto;
-    width:100vw;
+    height: auto;
+    width: 100vw;
     position: relative;
     z-index: 5;
     overflow: visible;
 
-  transition: opacity 0.15s ease-in-out;  /* Adjust timing to your preference */
-   
+    transition: opacity 0.15s ease-in-out;
+    /* Adjust timing to your preference */
+
 }
 
 .landing {
@@ -98,12 +99,15 @@ main {
 
     padding: 2rem 2rem 2rem 2rem;
 
-    transition: all .3s;
+    transition: all 2s;
 }
 
 .button-begin:hover {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+ 
+     background-color: #ffffff;
+     color:#000000;
+    animation: glow forwards 2s;
+
 }
 
 .button-end {
@@ -115,42 +119,44 @@ main {
     line-height: normal;
 
     border: 2px #FEFFEF solid;
-margin-top: 5rem;
+    margin-top: 5rem;
     padding: 2rem 2rem 2rem 2rem;
 
- transition: all .3s;
+    transition: all .3s;
 
 }
 
-.button-end:hover{
+.button-end:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-.flashScreen {    
-    opacity:0;
-     background:white; 
-    position:absolute;
-    width:100vw;
-    height:100vh;
-    top:0;
-    left:0;
-    transition:all;
+.flashScreen {
+    opacity: 0;
+    background: white;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transition: all;
 }
+
 .flash-anim {
-    animation-name:flashanim;
+    animation-name: flashanim;
     animation-duration: 4s;
     animation-direction: normal;
- 
+
 
 }
+
 @keyframes flashanim {
     0% {
-        opacity:1;
+        opacity: 1;
     }
 
     100% {
-        opacity:0;
+        opacity: 0;
     }
 }
 
@@ -162,15 +168,16 @@ margin-top: 5rem;
     min-height: 100vh;
     padding: 0 2rem;
 }
+
 .segment1-div {
-    height:100vh;
-    width:100vw;
+    height: 100vh;
+    width: 100vw;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(7, 1fr);
     gap: 15px;
-   padding: 0 7rem;
-    overflow:hidden;
+    padding: 0 7rem;
+    overflow: hidden;
 
 }
 
@@ -188,25 +195,28 @@ margin-top: 5rem;
     grid-row-start: 6;
 
 }
+
 .p-pos-top {
- grid-column: span 4 / span 4;
+    grid-column: span 4 / span 4;
     grid-row: span 2 / span 2;
     grid-row-start: 2;
 }
 
-.n-pos-top{
+.n-pos-top {
     grid-column: span 4 / span 4;
     grid-row: span 2 / span 2;
     grid-column-start: 6;
     grid-row-start: 2;
-   
+
 }
+
 .n-pos-mid {
     grid-column: span 4 / span 4;
     grid-row: span 2 / span 2;
     grid-column-start: 6;
     grid-row-start: 4;
 }
+
 .n-pos-bot {
     grid-column: span 4 / span 4;
     grid-row: span 2 / span 2;
@@ -233,9 +243,9 @@ margin-top: 5rem;
     font-weight: 700;
 }
 
-.small-narrator{
-    
-color:#FEFFEF;
+.small-narrator {
+
+    color: #FEFFEF;
     font-family: "Quicksand";
     font-size: 32px;
     font-style: normal;
@@ -243,7 +253,7 @@ color:#FEFFEF;
 }
 
 .narrator-center {
-    color:#FEFFEF;
+    color: #FEFFEF;
     font-family: "Quicksand";
     font-size: 32px;
     font-style: normal;
@@ -258,56 +268,75 @@ color:#FEFFEF;
 
 
 .person {
-    color: rgba(255,255,255,1);
+    color: rgba(255, 255, 255, 1);
 
     font-family: "Palanquin Dark";
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
 }
-.narrator{
-color: #FEFFEF;
 
-font-family: "Noto Serif";
-font-size: 48px;
-font-style: normal;
-font-weight: 700;
+.narrator {
+    color: #FEFFEF;
+
+    font-family: "Noto Serif";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
 
 }
+
 .fade-to-grey {
-    animation-name:fade-to-grey;
-    animation-duration:1s;
+    animation-name: fade-to-grey;
+    animation-duration: 1s;
     animation-iteration-count: 1;
-    color: rgba(255,255,255,.2); 
+    color: rgba(255, 255, 255, .2);
 }
+
 @keyframes fade-to-grey {
-    0% {color: rgba(255,255,255,1);}
-    100% {color: rgba(255, 255, 255, 0.2);}
+    0% {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        color: rgba(255, 255, 255, 0.2);
+    }
 }
+
 .nar {
-   
+
     font-family: "Quicksand";
     font-size: 32px;
     font-style: normal;
     font-weight: 400;
 }
+
 .grey-text {
-    color: rgba(255,255,255,.2); 
+    color: rgba(255, 255, 255, .2);
 }
 
 
 .grey-button {
-     animation-name:fade-button-to-grey;
-    animation-duration:1s;
+    animation-name: fade-button-to-grey;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    color: rgba(255,255,255,.2); 
-    border-color: rgba(255,255,255,.2);
+    color: rgba(255, 255, 255, .2);
+    border-color: rgba(255, 255, 255, .2);
 }
+
 @keyframes fade-button-to-grey {
-    0% {color: rgba(255,255,255,1); border-color: rgba(255,255,255,1);}
-    100% {color: rgba(255, 255, 255, 0.2); border-color: rgba(255,255,255,.2);}
+    0% {
+        color: rgba(255, 255, 255, 1);
+        border-color: rgba(255, 255, 255, 1);
+    }
+
+    100% {
+        color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, .2);
+    }
 }
+
 /*box dissapears completely after click*/
 /*remove anim on button*/
 
@@ -318,22 +347,70 @@ font-weight: 700;
     z-index: 10;
     right: 60px;
     overflow: hidden;
+    stroke: rgb(255, 253, 219);
+    fill: #000000;
+
+    transition: fill ease-in-out .5s;
+
+
+}
+
+.button-cont:hover {
+
+
+    fill: #ffffff;
+    animation: glow infinite alternate 3s;
+
+
+
+
+
+}
+
+
+.button-move {
+    stroke: #ffffff;
+    filter: blur(1px);
+
+
+    stroke-dasharray: 225;
+    animation: dash 10s infinite forwards;
+    z-index: 100;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 460;
+
+    }
+}
+
+@keyframes glow {
+    0% {
+        filter: drop-shadow(0 0 0px #ffff) drop-shadow(0 0 0px #ffca79) drop-shadow(0 0 0px #e9c5a4);
+    }
+
+    100% {
+
+        filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 8px #feffb8) drop-shadow(0 0 10px #fdff8a);
+    }
 }
 
 .grey-button-no-anim {
-     color:rgba(255,255,255,.2);
+    color: rgba(255, 255, 255, .2);
 
-    padding:1rem 2rem;
-    cursor:pointer;
+    padding: 1rem 2rem;
+    cursor: pointer;
 
-    border: 2px solid rgba(255,255,255,.2);
-  
+    border: 2px solid rgba(255, 255, 255, .2);
+
 }
+
 .question-option:hover p {
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
-.questionScreen{
+.questionScreen {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -343,7 +420,7 @@ font-weight: 700;
 }
 
 .question-options-container {
-     display: flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -352,10 +429,10 @@ font-weight: 700;
 }
 
 .question-options-button {
-    color:#FEFFEF;
+    color: #FEFFEF;
 
-    padding:1rem 2rem;
-    cursor:pointer;
+    padding: 1rem 2rem;
+    cursor: pointer;
 
     border: 2px solid #FEFFEF;
 
@@ -365,85 +442,96 @@ font-weight: 700;
 /* scroll section */
 
 .scroll-container {
-  height: 500vh; /* Make container taller than viewport to enable scrolling */
-  position: relative;
-  background: transparent;
+    height: 500vh;
+    /* Make container taller than viewport to enable scrolling */
+    position: relative;
+    background: transparent;
 }
-.intro-scroll{
-     position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: left;
-  max-width: 800px;
-  color:#FEFFEF;
+
+.intro-scroll {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    max-width: 800px;
+    color: #FEFFEF;
 }
+
 .scroll-text {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #FEFFEF;
-  font-family: "Noto Serif";
-  font-size: 36px;
-  text-align: left;
-  max-width: 800px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FEFFEF;
+    font-family: "Noto Serif";
+    font-size: 36px;
+    text-align: left;
+    max-width: 800px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .scroll-text.active {
-  opacity: 1;
+    opacity: 1;
 }
 
 .highlight-text {
-  font-size: 48px;
-  font-weight: 700;
+    font-size: 48px;
+    font-weight: 700;
 }
 
 .scroll-indicator {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #FEFFEF;
-  font-family: "Quicksand";
-  font-size: 18px;
-  opacity: 0.7;
-  animation: pulse 2s infinite;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FEFFEF;
+    font-family: "Quicksand";
+    font-size: 18px;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.4; }
-  50% { opacity: 0.9; }
-  100% { opacity: 0.4; }
+    0% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
 }
 
 .scroll-text.fade-out {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
-    
+
 }
 
 a {
-    color:#FEFFEF;
+    color: #FEFFEF;
     text-decoration: underline;
 }
-a:hover{
-color: #3737d3;
+
+a:hover {
+    color: #3737d3;
 }
 
 .end-text {
 
-   color: #FEFFEF;
+    color: #FEFFEF;
     font-family: "Quicksand";
     font-size: 32px;
-   font-weight: 550;
+    font-weight: 550;
 
 
 }
 
-h1 .end-text{
+h1 .end-text {
     line-height: 1rem;
 }
-

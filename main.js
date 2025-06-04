@@ -152,7 +152,42 @@ $(document).ready(() => {
 
     // Add progression button for interactive segments
     addProgressionButton(segment) {
-      $('main').prepend('<img class="button-cont" src="img/cont-button-v1.svg">');
+      $('main').prepend(`<svg class ="button-cont button-move" width="66" height="85" viewBox="0 0 66 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<g id="dialogue-3" clip-path="url(#clip0_1_2)">
+
+
+<path id="egg-outline" d="M33 3C34.8549 3 37.6823 3.88544 41.0654 5.91309C44.3752 7.89677 47.9437 10.8111 51.2285 14.4561C57.8257 21.7765 63 31.7174 63 42.5C63 65.0657 48.9066 82 33 82C17.0934 82 3 65.0657 3 42.5C3 31.5947 7.54603 21.6392 13.7305 14.3955C20.0141 7.03567 27.5058 3 33 3Z"  stroke-width="2"/>
+
+
+
+</g>
+
+<defs>
+<clipPath id="clip0_1_3">
+<rect width="1514" height="1024" fill="white" transform="translate(-1371 -883)"/>
+</clipPath>
+</defs>
+</svg>
+
+<svg class ="button-cont" width="66" height="85" viewBox="0 0 66 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<g id="dialogue-4" clip-path="url(#clip0_1_2)">
+
+
+<path id="egg-outline-2" d="M33 3C34.8549 3 37.6823 3.88544 41.0654 5.91309C44.3752 7.89677 47.9437 10.8111 51.2285 14.4561C57.8257 21.7765 63 31.7174 63 42.5C63 65.0657 48.9066 82 33 82C17.0934 82 3 65.0657 3 42.5C3 31.5947 7.54603 21.6392 13.7305 14.3955C20.0141 7.03567 27.5058 3 33 3Z" stroke-width="6"/>
+
+
+
+</g>
+
+<defs>
+<clipPath id="clip0_1_3">
+<rect width="1514" height="1024" fill="white" transform="translate(-1371 -883)"/>
+</clipPath>
+</defs>
+</svg>
+`);
 
       $('.button-cont').on('click', () => {
         console.log('Progression button clicked');
