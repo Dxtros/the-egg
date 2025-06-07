@@ -326,7 +326,7 @@ $(document).ready(() => {
       }
       // Show as grey text and not clickable if already asked
       else if (this.state.questionScreen.afterlifeAsked && this.state.questionScreen.currentAnswer != 'god') {
-         optionsContent += `<p class="grey-button-no-anim person">${options[0].text}asdfasg</p>`;
+         optionsContent += `<p class="grey-button-no-anim person">${options[0].text}</p>`;
       }
       //show the answer if we are asking the correlating question
       if (this.state.questionScreen.currentAnswer === 'afterlife') {
